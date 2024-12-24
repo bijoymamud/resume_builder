@@ -5,7 +5,7 @@ import TemplateTwo from "../SecondOneTemplate/TemplateTwo"
 const Home = () => {
   return (
     <div>
-          <Container>
+      <Container>
             <div className="grid grid-cols-2 gap-5 p-5">
                <TemplateOne />
                <TemplateTwo/>
