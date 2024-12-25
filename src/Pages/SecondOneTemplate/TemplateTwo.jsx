@@ -8,7 +8,7 @@ const TemplateTwo = () => {
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/80 group-hover:opacity-100">
          <button className="bg-green-600 text-white hover:bg-green-700 px-10 py-2" onClick={()=>document.getElementById('my_modal_3').showModal()}>Customize Template</button>
             <dialog id="my_modal_3" className="modal">
-                <div className="modal-box">
+                <div className="modal-box max-w-3xl p-10">
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
