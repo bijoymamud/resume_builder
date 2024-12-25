@@ -33,7 +33,6 @@ const DetailsOneTemplate = () => {
       setCurrentStep(currentStep + 1);
     } else {
       console.log('Final submission:', data);
-      // Handle final form submission
     }
   }
 
@@ -290,14 +289,27 @@ const DetailsOneTemplate = () => {
         return (
           // Education Form
           <div className="space-y-6">
-            {/* Degree Information */}
+                {/* Degree Information */}
+            <div className="relative">
+                <label className="block mb-2 text-sm font-semibold">Institution Name</label>
+                <input
+                  type="text"
+                  {...register("institution", { required: "Institution is required" })}
+                  className="input input-bordered w-full text-sm"
+                  placeholder="University name"
+                />
+                {errors.institution && (
+                  <span className="text-red-600">{errors.institution.message}</span>
+                )}
+            </div>
+                
             <div className="grid grid-cols-2 gap-5">
               <div className="relative">
                 <label className="block mb-2 text-sm font-semibold">Degree Name</label>
                 <input
                   type="text"
                   {...register("degreeName", { required: "Degree name is required" })}
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full text-sm"
                   placeholder="e.g., Bachelor of Science"
                 />
                 {errors.degreeName && (
@@ -306,11 +318,11 @@ const DetailsOneTemplate = () => {
               </div>
 
               <div className="relative">
-                <label className="block mb-2 text-sm font-semibold">Major</label>
+                <label className="block mb-2 text-sm font-semibold">Department</label>
                 <input
                   type="text"
-                  {...register("major", { required: "Major is required" })}
-                  className="input input-bordered w-full"
+                  {...register("department", { required: "Department is required" })}
+                  className="input input-bordered w-full text-sm"
                   placeholder="e.g., Computer Science"
                 />
                 {errors.major && (
@@ -322,24 +334,24 @@ const DetailsOneTemplate = () => {
             {/* Institution & Year */}
             <div className="grid grid-cols-2 gap-5">
               <div className="relative">
-                <label className="block mb-2 text-sm font-semibold">Institution</label>
+                <label className="block mb-2 text-sm font-semibold">Starting Year</label>
                 <input
-                  type="text"
-                  {...register("institution", { required: "Institution is required" })}
-                  className="input input-bordered w-full"
+                  type="date"
+                  {...register("startingYear", { required: "Starting Year is required" })}
+                  className="input input-bordered w-full text-sm"
                   placeholder="University name"
                 />
-                {errors.institution && (
-                  <span className="text-red-600">{errors.institution.message}</span>
+                {errors.startingYear && (
+                  <span className="text-red-600">{errors.startingYear.message}</span>
                 )}
               </div>
 
               <div className="relative">
                 <label className="block mb-2 text-sm font-semibold">Graduation Year</label>
                 <input
-                  type="number"
+                  type="date"
                   {...register("graduationYear", { required: "Graduation year is required" })}
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full text-sm"
                   placeholder="YYYY"
                 />
                 {errors.graduationYear && (
@@ -356,7 +368,7 @@ const DetailsOneTemplate = () => {
                   type="number"
                   step="0.01"
                   {...register("cgpa", { required: "CGPA is required" })}
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full text-sm"
                   placeholder="e.g., 3.75"
                 />
                 {errors.cgpa && (
@@ -365,12 +377,12 @@ const DetailsOneTemplate = () => {
               </div>
 
               <div className="relative">
-                <label className="block mb-2 text-sm font-semibold">Location</label>
+                <label className="block mb-2 text-sm font-semibold">Institution Location</label>
                 <input
                   type="text"
                   {...register("educationLocation", { required: "Location is required" })}
-                  className="input input-bordered w-full"
-                  placeholder="City, Country"
+                  className="input input-bordered w-full text-sm"
+                  placeholder="e.g., City, Country"
                 />
                 {errors.educationLocation && (
                   <span className="text-red-600">{errors.educationLocation.message}</span>
@@ -405,7 +417,7 @@ const DetailsOneTemplate = () => {
                 />
               </div>
               <div className="relative">
-                <label className="block mb-2 text-sm font-semibold">Position</label>
+                <label className="block mb-2 text-sm font-semibold">Job Title</label>
                 <input
                   type="text"
                   {...register("position", { required: "Position is required" })}
@@ -432,8 +444,19 @@ const DetailsOneTemplate = () => {
                 />
               </div>
             </div>
+
             <div className="relative">
-              <label className="block mb-2 text-sm font-semibold">Responsibilities</label>
+                <label className="block mb-2 text-sm font-semibold">Company Location</label>
+                <input
+                  type="text"
+                  {...register("companyLocation", { required: "Company Location is required" })}
+                  className="input input-bordered w-full"
+                  placeholder="e.g., Senior Developer"
+                />
+              </div>
+
+            <div className="relative">
+              <label className="block mb-2 text-sm font-semibold">Details</label>
               <textarea
                 {...register("responsibilities")}
                 className="textarea textarea-bordered w-full h-32"
@@ -480,21 +503,63 @@ const DetailsOneTemplate = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-5">
               <div className="relative">
-                <label className="block mb-2 text-sm font-semibold">Project Name</label>
+                <label className="block mb-2 text-sm font-semibold">Project Title</label>
                 <input
                   type="text"
-                  {...register("projectName", { required: "Project name is required" })}
-                  className="input input-bordered w-full"
+                  {...register("projectTitle", { required: "Project Title is required" })}
+                  className="input input-bordered w-full text-sm"
                 />
               </div>
+             
               <div className="relative">
-                <label className="block mb-2 text-sm font-semibold">Technologies Used</label>
+                <label className="block mb-2 text-sm font-semibold">Project Subtitle</label>
                 <input
                   type="text"
-                  {...register("projectTechnologies")}
-                  className="input input-bordered w-full"
+                  {...register("projectSubTitle", { required: "Project Title is required" })}
+                  className="input input-bordered w-full text-sm"
                 />
               </div>
+    
+            <div className="relative">
+                <label className="block mb-2 text-sm font-semibold">Live Link</label>
+             <input
+                  placeholder='https://...'
+                  type="text"
+                  {...register("liveLink")}
+                  className="input input-bordered w-full text-sm"
+                />
+               </div>
+                    
+               <div className="relative">
+                <label className="block mb-2 text-sm font-semibold">GitHub Link <span className='font-normal'>(Client)</span></label>
+                <input
+                 type="text"
+                 placeholder='https://...'       
+                  {...register("clientLink")}
+                  className="input input-bordered w-full text-sm"
+                />
+              </div>
+                    
+              <div className="relative">
+                <label className="block mb-2 text-sm font-semibold">GitHub Link <span className='font-normal'>(Server)</span></label>
+                <input
+                type="text"
+                placeholder='https://...'
+                  {...register("clientLink")}
+                  className="input input-bordered w-full text-sm"
+                />
+              </div>
+                    
+            <div className="relative">
+                <label className="block mb-2 text-sm font-semibold">Technologies</label>
+                <input
+                type="text"
+                 placeholder='Technologies....'
+                  {...register("clientLink")}
+                  className="input input-bordered w-full text-sm"
+                />
+              </div>
+
             </div>
             <div className="relative">
               <label className="block mb-2 text-sm font-semibold">Project Description</label>
@@ -502,15 +567,6 @@ const DetailsOneTemplate = () => {
                 {...register("projectDescription")}
                 className="textarea textarea-bordered w-full h-32"
                 placeholder="Describe the project, your role, and achievements..."
-              />
-            </div>
-            <div className="relative">
-              <label className="block mb-2 text-sm font-semibold">Project URL</label>
-              <input
-                type="url"
-                {...register("projectUrl")}
-                className="input input-bordered w-full"
-                placeholder="https://..."
               />
             </div>
           </div>
