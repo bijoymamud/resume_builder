@@ -27,14 +27,32 @@ const DetailsOneTemplate = () => {
     
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    if (currentStep < 7) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      console.log('Final submission:', data);
-    }
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  //   if (currentStep < 7) {
+  //     setCurrentStep(currentStep + 1);
+  //   } else {
+  //     console.log('Final submission:', data);
+  //   }
+  // }
+
+  // In your onSubmit function, update it to:
+const onSubmit = (data) => {
+  if (currentStep < 7) {
+    setCurrentStep(currentStep + 1);
+  } else {
+    // Create and dispatch a custom event with the form data
+    const event = new CustomEvent('formSubmitted', { 
+      detail: {
+        ...data,
+        photo: selectedImage // Include the selected image URL
+      }
+    });
+    window.dispatchEvent(event);
+    // Close the modal
+    document.getElementById('my_modal_3')?.close();
   }
+};
 
   const getStepTitle = () => {
     switch (currentStep) {
@@ -451,7 +469,7 @@ const DetailsOneTemplate = () => {
                   type="text"
                   {...register("companyLocation", { required: "Company Location is required" })}
                   className="input input-bordered w-full"
-                  placeholder="e.g., Senior Developer"
+                  placeholder="e.g., Dhaka, Bangladesh"
                 />
               </div>
 
@@ -545,7 +563,7 @@ const DetailsOneTemplate = () => {
                 <input
                 type="text"
                 placeholder='https://...'
-                  {...register("clientLink")}
+                  {...register("serverSiteLink")}
                   className="input input-bordered w-full text-sm"
                 />
               </div>
@@ -555,7 +573,7 @@ const DetailsOneTemplate = () => {
                 <input
                 type="text"
                  placeholder='Technologies....'
-                  {...register("clientLink")}
+                  {...register("technologies")}
                   className="input input-bordered w-full text-sm"
                 />
               </div>
